@@ -5,8 +5,8 @@ import { ConnectWalletButton } from 'lib/components/ConnectWalletButton'
 import { WalletInfo } from 'lib/components/WalletInfo'
 import { useWalletNetwork } from 'lib/hooks/useWalletNetwork'
 
-import PoolLogo from 'assets/images/amnext-logo.svg'
-import PoolPLogo from 'assets/images/amnext-logo-mobile.svg'
+import PoolLogo from 'assets/images/pooltogether-logo.svg'
+import PoolPLogo from 'assets/images/pooltogether-white-mark.svg'
 
 export const Nav = (props) => {
   const { walletConnected } = useWalletNetwork()
@@ -21,12 +21,12 @@ export const Nav = (props) => {
                 <img
                   alt={`PoolTogether Logo`}
                   src={PoolLogo}
-                  className='mr-auto lg:m-0 w-44 hidden sm:block'
+                  className='mr-auto lg:m-0 w-32 hidden sm:block'
                 />
                 <img
                   alt={`PoolTogether P Logo`}
                   src={PoolPLogo}
-                  className='mr-auto lg:m-0 w-8 block sm:hidden'
+                  className='mr-auto lg:m-0 w-6 block sm:hidden'
                 />
               </a>
             </Link>

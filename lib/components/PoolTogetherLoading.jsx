@@ -1,6 +1,6 @@
 import React from 'react'
 
-import PoolTogetherMark from 'assets/images/amnext-logo-mobile.svg'
+import PoolTogetherMark from 'assets/images/pooltogether-white-mark.svg'
 import { LoadingDots } from 'lib/components/LoadingDots'
 
 export const PoolTogetherLoading = () => {

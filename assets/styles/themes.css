@@ -1,11 +1,11 @@
 .theme-dark {
-  --color-bg-body: black;
+  --color-bg-body: #290b5a;
   --color-bg-card: #341762;
   --color-bg-card-selected: #43286e;
   --color-bg-primary: #290b5a;
-  --color-bg-secondary: #231945;
+  --color-bg-secondary: #4c249f;
   --color-bg-tertiary: rgba(255, 255, 255, 0.05);
-  --color-bg-default: #0b0c08;
+  --color-bg-default: #341762;
   --color-bg-darkened: #1a083a;
   --color-bg-inverse: #fff;
   --color-bg-overlay: rgba(0, 0, 0, 0.7);
@@ -44,7 +44,7 @@
   --color-text-highlight-2: #35f0d0;
   --color-text-highlight-3: #55f1d7;
   --color-text-whitesmoke: rgba(245, 245, 245, 0.6);
-  --color-text-red-1: #fdc207;
+  --color-text-red-1: #e61b1b;
   --color-text-green-1: #05e6c4;
   --color-text-green-2: #31b073;
   --color-text-yellow-1: #ffc403;
