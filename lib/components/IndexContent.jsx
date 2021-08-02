@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo, useState, useEffect } from 'react'
 import FeatherIcon from 'feather-icons-react'
 import classnames from 'classnames'
 import { useOnboard } from '@pooltogether/hooks'
@@ -57,11 +57,13 @@ export const IndexContent = () => {
 }
 
 const PoolsLists = () => {
-  const {
-    data: createdPrizePools,
-    isFetched: createdPrizePoolsIsFetched,
-    isFetching: createdPrizePoolsIsFetching
-  } = useAllCreatedPrizePoolsWithTokens()
+  const { chainId } = useNetwork()
+  const createdPrizePools = official_pools[chainId]
+  // const {
+  //   data: createdPrizePools,
+  //   isFetched: createdPrizePoolsIsFetched,
+  //   isFetching: createdPrizePoolsIsFetching
+  // } = useAllCreatedPrizePoolsWithTokens()
   const {
     data: tokenBalances,
     isFetched: tokenBalancesIsFetched,
@@ -69,10 +71,8 @@ const PoolsLists = () => {
   } = useAllUserTokenBalances()
 
   if (
-    !createdPrizePoolsIsFetched ||
     !tokenBalancesIsFetched ||
-    tokenBalancedIsFetching ||
-    createdPrizePoolsIsFetching
+    tokenBalancedIsFetching
   ) {
     return <PoolTogetherLoading />
   }
@@ -276,14 +276,10 @@ const AllPoolsCard = (props) => {
       if (hideNoDeposits && Number(ticket.totalSupply) === 0) continue
 
       const row = (
-        <PoolRow key={prizePool.prizePool} prizePool={prizePool} token={token} ticket={ticket} />
+        <PoolRow key={prizePool.prizePool} prizePool={prizePool} token={prizePool.token} ticket={ticket} />
       )
       pools.push(row)
     }
-
-    pools.sort(sortByTvl)
-
-    if (showFirstTen) return pools.slice(0, 10)
 
     return pools
   }, [createdPrizePools, tokenBalances, hideNoDeposits, showFirstTen, isWalletConnected])
@@ -370,7 +366,7 @@ const PoolRow = (props) => {
     <li className='flex flex-row mb-4 last:mb-0 w-full'>
       <PoolTitleCell {...props} />
       <TypeCell {...props} />
-      {isWalletConnected && <UsersBalanceCell {...props} />}
+      {/* {isWalletConnected && <UsersBalanceCell {...props} />} */}
       <TvlCell {...props} />
       <Actions {...props} />
     </li>
@@ -407,7 +403,17 @@ const TypeCell = (props) => {
 
 const TvlCell = (props) => {
   const { ticket, token } = props
-  const amount = ticket.totalSupply.toString()
+  const [amount, setAmount] = useState("0")
+  useEffect(() => {
+    async function fetchTVL() {
+      try {
+        
+      } catch (error) {
+        
+      }
+    }
+    fetchTVL()
+  }, [])
   return (
     <span className='w-1/6 hidden xs:block my-auto'>
       {numberWithCommas(amount, { precision: getPrecision(Number(amount)) })}
