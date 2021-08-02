@@ -263,9 +263,9 @@ const AllPoolsCard = (props) => {
 
   const { isWalletConnected } = useOnboard()
   const { chainId, view: networkView } = useNetwork()
+  console.log('chainID: ', chainId)
   const [hideNoDeposits, setHideNoDeposits] = useState(false)
   const [showFirstTen, setShowFirstTen] = useState(createdPrizePools.length > 10)
-
   const pools = useMemo(() => {
     if (!createdPrizePools || !tokenBalances) return []
 
