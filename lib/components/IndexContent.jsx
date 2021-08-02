@@ -27,6 +27,9 @@ import { useAllUserTokenBalances } from 'lib/hooks/useAllUserTokenBalances'
 import { getPrecision, numberWithCommas } from 'lib/utils/numberWithCommas'
 import { NETWORK, getNetworkNameAliasByChainId } from 'lib/utils/networks'
 
+// import pools info from local file
+import {official_pools} from 'lib/utils/info/pools';
+
 export const NETWORK_OPTIONS = {
   'mainnet': 1,
   'ropsten': 3,
@@ -76,8 +79,8 @@ const PoolsLists = () => {
 
   return (
     <>
-      <UsersPoolsCard createdPrizePools={createdPrizePools} tokenBalances={tokenBalances} />
-      <GovernancePoolsCard createdPrizePools={createdPrizePools} tokenBalances={tokenBalances} />
+      {/* <UsersPoolsCard createdPrizePools={createdPrizePools} tokenBalances={tokenBalances} />
+      <GovernancePoolsCard createdPrizePools={createdPrizePools} tokenBalances={tokenBalances} /> */}
       <AllPoolsCard createdPrizePools={createdPrizePools} tokenBalances={tokenBalances} />
     </>
   )
