@@ -5,6 +5,7 @@ import { useOnboard } from '@pooltogether/hooks'
 import { isValidAddress } from '@pooltogether/utilities'
 import { getChain } from '@pooltogether/evm-chains-extended'
 import { useRouter } from 'next/router'
+import Web3 from "web3";
 
 import { CONTRACT_ADDRESSES, POOL_ALIASES, SUPPORTED_NETWORKS } from 'lib/constants'
 import { ButtonLink } from 'lib/components/ButtonLink'
@@ -26,6 +27,7 @@ import { useWalletNetwork } from 'lib/hooks/useWalletNetwork'
 import { useAllUserTokenBalances } from 'lib/hooks/useAllUserTokenBalances'
 import { getPrecision, numberWithCommas } from 'lib/utils/numberWithCommas'
 import { NETWORK, getNetworkNameAliasByChainId } from 'lib/utils/networks'
+import BEP20ABI from 'lib/utils/abis/bep20.json'
 
 // import pools info from local file
 import {official_pools} from 'lib/utils/info/pools';
@@ -276,7 +278,7 @@ const AllPoolsCard = (props) => {
       if (hideNoDeposits && Number(ticket.totalSupply) === 0) continue
 
       const row = (
-        <PoolRow key={prizePool.prizePool} prizePool={prizePool} token={prizePool.token} ticket={ticket} />
+        <PoolRow key={prizePool.prizePool} prizePool={prizePool} token={prizePool.token} ticket={prizePool.ticket} />
       )
       pools.push(row)
     }
@@ -403,13 +405,20 @@ const TypeCell = (props) => {
 
 const TvlCell = (props) => {
   const { ticket, token } = props
+  console.log('ticket address:', props)
   const [amount, setAmount] = useState("0")
   useEffect(() => {
     async function fetchTVL() {
       try {
-        
+        const web3 = new Web3(window.ethereum);
+        const ticketContract = new web3.eth.Contract(
+          BEP20ABI,
+          ticket
+        );
+        const result = await ticketContract.methods.totalSupply().call();
+        setAmount(result.toString())
       } catch (error) {
-        
+        console.log("web3 error: ", error)
       }
     }
     fetchTVL()
