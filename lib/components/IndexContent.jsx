@@ -288,7 +288,7 @@ const AllPoolsCard = (props) => {
 
   if (createdPrizePools?.length === 0) return null
 
-  let tip = 'These pools created permissionlessly by anyone using the PoolTogether Builder'
+  let tip = 'Active Prize Pool of Amnext'
   if ([NETWORK.matic, NETWORK.mumbai].includes(chainId)) {
     tip = `Unfortunately due to limitations of ${networkView} we can't dynamically compile a list of
     created prize pools.`
