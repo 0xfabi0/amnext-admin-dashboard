@@ -2,13 +2,13 @@ import Head from 'next/head'
 
 export const Meta = (props) => {
   let { title } = props
-  const defaultTitle = 'PoolTogether - Community Pools'
+  const defaultTitle = 'Amnext - The next big lottery in DeFi'
   title = title ? `${title} - ${defaultTitle}` : defaultTitle
 
-  const url = `https://community.pooltogether.com`
-  const description = `View, deposit and withdraw for all V3 Pools`
-  const keywords = 'ethereum'
-  const twitterHandle = '@PoolTogether_'
+  const url = `https://app.amnext.io`
+  const description = `Power up your savings with the No Loss Prize Pools, earn AMC Tokens, gain rewards by inviting your friends and catch the oppurtunity to win forever with the Lifetime Lottery!`
+  const keywords = 'Amnext, Amnext bsc, Amnext Token, AMC Token bscscan, No-Loss Lottery, No Loss Lottery, Lifetime Lottery, Amnext BSC, Amnext Token, Lifetime Ticket, Lottery, decentralized Lottery'
+  const twitterHandle = '@OfficialAmnext'
 
   return (
     <>
@@ -25,17 +25,17 @@ export const Meta = (props) => {
         <meta name='theme-color' content='#1a083a' />
         <meta name='description' content={description} />
         <meta name='keywords' content={keywords} />
-        <meta name='author' content='PoolTogether' />
+        <meta name='author' content='Amnext' />
 
         <meta property='og:title' content={title} />
         <meta property='og:description' content={description} />
         <meta property='og:site_name' content={title} />
         <meta property='og:url' content={url} />
         <meta property='og:type' content='website' />
-        <meta
-          property='twitter:image:src'
-          content={`${url}/pooltogether-facebook-share-image-1200-630@2x.png`}
-        />
+        {/*<meta*/}
+        {/*  property='twitter:image:src'*/}
+        {/*  content={`${url}/pooltogether-facebook-share-image-1200-630@2x.png`}*/}
+        {/*/>*/}
         <meta property='og:rich_attachment' content='true' />
         <meta property='og:image:width' content='1200' />
         <meta property='og:image:height' content='630' />
@@ -43,10 +43,10 @@ export const Meta = (props) => {
         <meta property='twitter:title' content={title} />
         <meta property='twitter:card' content='summary_large_image' />
         <meta property='twitter:site' content={twitterHandle} />
-        <meta
-          property='twitter:image:src'
-          content={`${url}/pooltogether-twitter-share-image-1200-675@2x.png`}
-        />
+        {/*<meta*/}
+        {/*  property='twitter:image:src'*/}
+        {/*  content={`${url}/pooltogether-twitter-share-image-1200-675@2x.png`}*/}
+        {/*/>*/}
         <meta property='twitter:url' content={url} />
         <meta property='twitter:creator' content={twitterHandle} />
       </Head>

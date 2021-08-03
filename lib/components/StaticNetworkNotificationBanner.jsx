@@ -39,7 +39,7 @@ const StaticNetworkNotification = () => {
   return (
     <div className='flex flex-col'>
       <span>
-        PoolTogether works on <b className='capitalize'>{supportedNames.join(', ')}</b>. Your wallet
+        Amnext works on <b className='capitalize'>{supportedNames.join(', ')}</b>. Your wallet
         is currently set to{' '}
         <span className='inline-flex items-center'>
           <NetworkIcon sizeClasses='w-3 h-3' chainId={walletChainId} />

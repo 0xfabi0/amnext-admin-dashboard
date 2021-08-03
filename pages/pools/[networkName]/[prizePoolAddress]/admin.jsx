@@ -7,7 +7,7 @@ import { RelativeInternalLink } from 'lib/components/RelativeInternalLink'
 import { BlockExplorerLink } from 'lib/components/BlockExplorerLink'
 import { PoolData } from 'lib/components/PoolData'
 
-import ManageImage from 'assets/images/manage-image.svg'
+import ManageImage from 'assets/images/manage-image.gif'
 import { usePoolChainValues } from 'lib/hooks/usePoolChainValues'
 import { useUsersAddress } from '@pooltogether/hooks'
 
@@ -34,7 +34,7 @@ const AdminHeader = () => {
           size='base'
           color='secondary'
           className='mt-6'
-          href='https://docs.pooltogether.com/'
+          href='https://docs.amnext.io/'
         >
           View documentation
         </ButtonLink>

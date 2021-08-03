@@ -38,6 +38,7 @@
     "@next/bundle-analyzer": "^10.1.1"
   },
   "dependencies": {
+    "@fontsource/plus-jakarta-sans": "^4.5.0",
     "@pooltogether/bnc-onboard": "1.25.0-b",
     "@pooltogether/current-pool-data": "3.4.23",
     "@pooltogether/etherplex": "1.1.1",
@@ -78,6 +79,7 @@
     "react-query": "^3.16.0",
     "react-toastify": "^6.0.5",
     "react-tooltip": "^4.2.15",
+    "reactstrap": "^8.9.0",
     "request": "2.88.2",
     "rollup": "2.17.1",
     "scheduler": "^0.20.1",

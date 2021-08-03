@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useEffect, useState } from 'react'
 import FeatherIcon from 'feather-icons-react'
 import classnames from 'classnames'
 
@@ -10,8 +10,10 @@ import { RelativeInternalLink } from 'lib/components/RelativeInternalLink'
 import { useCoingeckoTokenData } from 'lib/hooks/useCoingeckoTokenData'
 import { useAwardsList } from 'lib/hooks/useAwardsList'
 import { usePoolChainValues } from 'lib/hooks/usePoolChainValues'
+import { numberWithCommas } from "../utils/numberWithCommas";
+import { DEFAULT_ORACLE, fetchPrice } from "./SideBar/priceOracle";
 
-import Cactus from 'assets/images/cactus.svg'
+import nothingspace from 'assets/images/nothing-space.gif'
 
 export const PrizeCard = (props) => {
   const { showLinks, className } = props
@@ -80,8 +82,8 @@ const PrizeSection = (props) => {
         </CardSecondaryTitle>
         <CardSecondaryTitle className='text-center mb-8'>Check back on us soon!</CardSecondaryTitle>
         <img
-          alt='image of a cactus'
-          src={Cactus}
+          alt='nothing on space'
+          src={nothingspace}
           className='mx-auto w-12 h-12 sm:w-32 sm:h-32 mb-4 sm:mb-8'
         />
       </>
@@ -115,7 +117,15 @@ const Prizes = (props) => {
 const SinglePrizeItem = (props) => {
   const { token } = props
   const { data: tokenData } = useCoingeckoTokenData(token.address)
+  const { data: poolChainValues } = usePoolChainValues()
+  const [priceOracle, setPriceOracle] = useState(DEFAULT_ORACLE);
+  const balanceInFiat = token.formattedBalance * parseFloat(priceOracle[token.symbol.toUpperCase()]);
+  const formattedBalanceInFiat = numberWithCommas(balanceInFiat, { decimals: poolChainValues.token.decimals })
   const imageUrl = tokenData?.image?.large
+
+  useEffect(() => {
+    fetchPrice(setPriceOracle);
+  }, []);
 
   return (
     <div className={'flex mx-auto my-2 sm:mt-0 sm:mb-2 leading-none'}>
@@ -123,9 +133,8 @@ const SinglePrizeItem = (props) => {
         <img src={imageUrl} className='w-8 h-8 sm:w-16 sm:h-16 mr-4 my-auto rounded-full' />
       )}
       <span className='font-bold text-6xl sm:text-9xl mr-4 my-auto text-flashy'>
-        {token.formattedBalance}
+        $ {formattedBalanceInFiat}
       </span>
-      <span className='font-bolt text-sm sm:text-4xl mt-auto mb-2'>{token.symbol}</span>
     </div>
   )
 }

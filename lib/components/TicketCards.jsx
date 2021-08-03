@@ -73,7 +73,7 @@ const addTokenToMetaMask = async (tokenAddress, symbol, decimals) => {
           address: tokenAddress,
           symbol, // A ticker symbol or shorthand, up to 5 chars.
           decimals, // The number of decimals in the token
-          image: 'https://app.pooltogether.com/pooltogether-token-logo@2x.png'
+          image: 'https://amnext.io/amnext-token-logo.png'
         }
       }
     })

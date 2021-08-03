@@ -7,6 +7,8 @@ import { useWalletNetwork } from 'lib/hooks/useWalletNetwork'
 
 import PoolLogo from 'assets/images/amnext-logo.svg'
 import PoolPLogo from 'assets/images/amnext-logo-mobile.svg'
+import hamburgerExpanded from "assets/images/sidebar/hamburger_expanded.svg";
+import hamburgerCollapsed from "assets/images/sidebar/hamburger_collapsed.svg";
 
 export const Nav = (props) => {
   const { walletConnected } = useWalletNetwork()
@@ -14,15 +16,31 @@ export const Nav = (props) => {
   return (
     <>
       <div className='nav-and-footer-container'>
-        <nav className='sm:px-8 lg:px-0 nav-min-height flex items-center h-full justify-between flex-wrap'>
+        <nav className='lg:px-0 nav-min-height flex items-center h-full justify-between flex-wrap'>
           <div className='w-2/5 lg:w-1/5 justify-start h-full flex items-center truncate'>
+            {props.sideMenu ? (
+              <img
+                src={hamburgerExpanded}
+                className="menu-return sidebarToggle"
+                alt=""
+                onClick={e => props.toggleClick(true)}
+              />
+            ) : (
+              <img
+                src={hamburgerCollapsed}
+                className="menu-return sidebarToggle"
+                alt=""
+                onClick={e => props.toggleClick(false)}
+              />
+            )}
             <Link href='/' as='/'>
-              <a title={'Back to home'} className='border-0'>
+              <a title={'Back to home'} className='flex items-center border-0'>
                 <img
                   alt={`PoolTogether Logo`}
                   src={PoolLogo}
                   className='mr-auto lg:m-0 w-44 hidden sm:block'
                 />
+                <div className="version hidden sm:block">v1.0</div>
                 <img
                   alt={`PoolTogether P Logo`}
                   src={PoolPLogo}

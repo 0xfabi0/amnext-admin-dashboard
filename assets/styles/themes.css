@@ -5,7 +5,7 @@
   --color-bg-primary: #290b5a;
   --color-bg-secondary: #231945;
   --color-bg-tertiary: rgba(255, 255, 255, 0.05);
-  --color-bg-default: #0b0c08;
+  --color-bg-default: #060814;
   --color-bg-darkened: #1a083a;
   --color-bg-inverse: #fff;
   --color-bg-overlay: rgba(0, 0, 0, 0.7);
@@ -28,6 +28,7 @@
   --color-bg-teal: #0ea3a4;
   --color-bg-purple-1: #401c94;
   --color-bg-purple-2: #720b73;
+  --color-bg-purple-3: #0D1027;
 
   --color-text-accent-1: #bbb2ce;
   --color-text-accent-2: #bbb2ce;

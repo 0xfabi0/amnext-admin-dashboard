@@ -1,13 +1,19 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Slide, ToastContainer } from 'react-toastify'
 
 import { Footer } from 'lib/components/Footer'
 import { Meta } from 'lib/components/Meta'
 import { Nav } from 'lib/components/Nav'
 import { NotificationBanners } from 'lib/components/NotificationBanners'
+import Sidebar from 'lib/components/SideBar/SideBar'
 
 export const Layout = (props) => {
   const { children } = props
+  const [sideMenu, setSideMenu] = useState(false);
+
+  const expandCollapseMenu = (close) => {
+    setSideMenu(!close);
+  };
 
   return (
     <>
@@ -16,7 +22,11 @@ export const Layout = (props) => {
       <NotificationBanners />
 
       <div
-        className='flex flex-col w-full'
+        className={
+          sideMenu
+            ? "flex flex-col w-full"
+            : "flex flex-col w-full flip"
+        }
         style={{
           minHeight: '100vh'
         }}
@@ -24,8 +34,12 @@ export const Layout = (props) => {
         <div className='pool-container flex flex-grow relative z-30 h-full page fadeIn animated'>
           <div className='flex flex-col flex-grow'>
             <div id='top' className='main-nav relative spinner-hidden z-10 pt-2'>
-              <Nav />
+              <Nav
+                sideMenu={sideMenu}
+                toggleClick={expandCollapseMenu}
+              />
             </div>
+            <Sidebar toggleClick={expandCollapseMenu} />
             <div
               className='relative flex justify-center flex-grow h-full z-10 text-white'
               style={{
@@ -37,10 +51,6 @@ export const Layout = (props) => {
                   ...props
                 })}
               </div>
-            </div>
-
-            <div className='main-footer z-10'>
-              <Footer />
             </div>
           </div>
         </div>

@@ -4,6 +4,7 @@ import { AwardPrizeCard } from 'lib/components/AwardPrizeCard'
 import { Card } from 'lib/components/Card'
 import { Collapse } from 'lib/components/Collapse'
 import { DepositUI } from 'lib/components/DepositUI'
+import { PoolHeader } from 'lib/components/PoolHeader'
 import { PrizeCard } from 'lib/components/PrizeCard'
 import { WithdrawUI } from 'lib/components/WithdrawUI'
 import { RelativeInternalLink } from 'lib/components/RelativeInternalLink'
@@ -15,6 +16,7 @@ export const DepositorUI = (props) => {
 
   return (
     <>
+      <PoolHeader />
       <PrizeCard className='mb-4' />
       {!timeRemaining && <AwardPrizeCard />}
       <Card>

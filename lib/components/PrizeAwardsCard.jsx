@@ -6,7 +6,7 @@ import { LoadingDots } from 'lib/components/LoadingDots'
 import { useAwardsList } from 'lib/hooks/useAwardsList'
 import { RowDataCell, Table } from 'lib/components/Table'
 
-import PrizeIllustration from 'assets/images/prize-illustration-transparent@2x.png'
+import PrizeIllustration from 'assets/images/prize-illustration-transparent@2x.gif'
 
 export const PrizeAwardsCard = (props) => {
   return (

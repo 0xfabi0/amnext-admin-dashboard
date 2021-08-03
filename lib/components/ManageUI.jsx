@@ -6,7 +6,7 @@ import { Content, ContentPane, Tab, Tabs } from 'lib/components/Tabs'
 import { Card, CardSecondaryTitle } from 'lib/components/Card'
 import { ButtonLink } from 'lib/components/ButtonLink'
 
-import ManageImage from 'assets/images/manage-image.svg'
+import ManageImage from 'assets/images/manage-image.gif'
 import { RelativeInternalLink } from 'lib/components/RelativeInternalLink'
 import { BlockExplorerLink } from 'lib/components/BlockExplorerLink'
 import { CopyIcon } from 'lib/components/CopyIcon'
@@ -70,7 +70,7 @@ const ManageHeader = () => {
           size='base'
           color='secondary'
           className='mt-6'
-          href='https://docs.pooltogether.com/'
+          href='https://docs.amnext.io/'
         >
           View documentation
         </ButtonLink>

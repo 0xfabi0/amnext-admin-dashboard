@@ -58,7 +58,7 @@ body {
 hr {
   border: 0;
   height: 0;
-  border-top: 2px solid var(--color-border-primary);
+  border-top: 2px solid var(--color-text-green-1);
   border-bottom: none;
   background: transparent;
   margin: 20px auto;
@@ -419,4 +419,31 @@ input[type='text'] {
 
   background-size: 1000% auto;
   animation: cycleBackgroundPos 15000ms infinite steps(100);
+}
+
+.pool_header .bredcum_valus ul li {
+  font-family: "Montserrat", sans-serif;
+  list-style: none;
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 15px;
+}
+
+.pool_header h1 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 0px;
+}
+
+.pool_header img {
+  display: inline;
+}
+
+.pool_header h1 .daily_breadcum {
+  background: #f53792;
+  padding: 5px 19px;
+  font-size: 23px;
+  border-radius: 25px;
+  margin-left: 15px;
 }

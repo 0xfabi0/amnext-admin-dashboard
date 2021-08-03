@@ -15,12 +15,12 @@ body {
 }
 
 .nav-min-height {
-  min-height: 60px;
+  min-height: 54px;
 }
 
 @screen sm {
   .nav-min-height {
-    min-height: 90px;
+    min-height: 78px;
   }
 }
 
@@ -67,8 +67,6 @@ body {
 @screen sm {
   .pool-container,
   .nav-and-footer-container {
-    max-width: 1224px;
-
     margin-left: auto;
     margin-right: auto;
     padding-left: 0;
@@ -81,25 +79,7 @@ body {
 
 @screen sm {
   .nav-and-footer-container {
-    max-width: 1224px;
-  }
-}
-
-@screen lg {
-  .nav-and-footer-container {
-    max-width: 1352px;
-  }
-}
-
-@screen sm {
-  .pool-container {
-    max-width: 1224px;
-  }
-}
-
-@screen lg {
-  .pool-container {
-    max-width: 1460px;
+    max-width: calc(100% - 68px);
   }
 }
 

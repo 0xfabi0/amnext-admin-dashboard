@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import Head from "next/head";
 import {
   useInitCookieOptions,
   useInitializeOnboard,
@@ -18,8 +19,10 @@ import 'react-toastify/dist/ReactToastify.css'
 import '@reach/menu-button/styles.css'
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 
+import 'assets/styles/bootstrap.css'
 import 'assets/styles/index.css'
 import 'assets/styles/layout.css'
+import 'assets/styles/sidebar.css'
 import 'assets/styles/loader.css'
 import 'assets/styles/pool.css'
 import 'assets/styles/pool-toast.css'
@@ -28,6 +31,9 @@ import 'assets/styles/animations.css'
 import 'assets/styles/transitions.css'
 import 'assets/styles/typography.css'
 import 'assets/styles/themes.css'
+import "@fontsource/plus-jakarta-sans/700.css";
+import "@fontsource/plus-jakarta-sans/500.css";
+import "@fontsource/plus-jakarta-sans/300.css";
 
 import 'assets/styles/bnc-onboard--custom.css'
 import 'assets/styles/reach--custom.css'
@@ -55,6 +61,13 @@ function MyApp({ Component, pageProps }) {
   }, [])
 
   return (
+    <>
+      <Head>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js" />
+        <link href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+        <link href="//fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" />
+      </Head>
     <ErrorBoundary>
       <JotaiProvider>
         <QueryClientProvider client={queryClient}>
@@ -70,6 +83,7 @@ function MyApp({ Component, pageProps }) {
         </QueryClientProvider>
       </JotaiProvider>
     </ErrorBoundary>
+    </>
   )
 }
 

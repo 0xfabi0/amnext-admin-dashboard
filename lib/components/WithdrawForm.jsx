@@ -238,7 +238,7 @@ export const WithdrawForm = (props) => {
                 fee.
               </div>
               <a
-                href='https://docs.pooltogether.com/protocol/prize-pool/fairness'
+                href='https://docs.amnext.io/lottery/how-the-lottery-works/fairness'
                 target={'_blank'}
                 className={'underline text-accent-1 trans hover:opacity-50 text-center mx-auto'}
               >

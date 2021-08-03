@@ -22,7 +22,7 @@ import { usePoolChainValues } from 'lib/hooks/usePoolChainValues'
 import { useUsersAddress } from '@pooltogether/hooks'
 import { useOnTransactionCompleted } from 'lib/hooks/useOnTransactionCompleted'
 
-import PrizeIllustration from 'assets/images/prize-illustration-transparent@2x.png'
+import PrizeIllustration from 'assets/images/prize-illustration-transparent@2x.gif'
 
 const handleAddExternalErc721 = async (
   sendTx,
