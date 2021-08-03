@@ -1,10 +1,11 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo, useState, useEffect } from 'react'
 import FeatherIcon from 'feather-icons-react'
 import classnames from 'classnames'
 import { useOnboard } from '@pooltogether/hooks'
 import { isValidAddress } from '@pooltogether/utilities'
 import { getChain } from '@pooltogether/evm-chains-extended'
 import { useRouter } from 'next/router'
+import Web3 from "web3";
 
 import { CONTRACT_ADDRESSES, POOL_ALIASES, SUPPORTED_NETWORKS } from 'lib/constants'
 import { ButtonLink } from 'lib/components/ButtonLink'
@@ -26,6 +27,10 @@ import { useWalletNetwork } from 'lib/hooks/useWalletNetwork'
 import { useAllUserTokenBalances } from 'lib/hooks/useAllUserTokenBalances'
 import { getPrecision, numberWithCommas } from 'lib/utils/numberWithCommas'
 import { NETWORK, getNetworkNameAliasByChainId } from 'lib/utils/networks'
+import BEP20ABI from 'lib/utils/abis/bep20.json'
+
+// import pools info from local file
+import {official_pools} from 'lib/utils/info/pools';
 
 export const NETWORK_OPTIONS = {
   'mainnet': 1,
@@ -54,11 +59,13 @@ export const IndexContent = () => {
 }
 
 const PoolsLists = () => {
-  const {
-    data: createdPrizePools,
-    isFetched: createdPrizePoolsIsFetched,
-    isFetching: createdPrizePoolsIsFetching
-  } = useAllCreatedPrizePoolsWithTokens()
+  const { chainId } = useNetwork()
+  const createdPrizePools = official_pools[chainId]
+  // const {
+  //   data: createdPrizePools,
+  //   isFetched: createdPrizePoolsIsFetched,
+  //   isFetching: createdPrizePoolsIsFetching
+  // } = useAllCreatedPrizePoolsWithTokens()
   const {
     data: tokenBalances,
     isFetched: tokenBalancesIsFetched,
@@ -66,18 +73,16 @@ const PoolsLists = () => {
   } = useAllUserTokenBalances()
 
   if (
-    !createdPrizePoolsIsFetched ||
     !tokenBalancesIsFetched ||
-    tokenBalancedIsFetching ||
-    createdPrizePoolsIsFetching
+    tokenBalancedIsFetching
   ) {
     return <PoolTogetherLoading />
   }
 
   return (
     <>
-      <UsersPoolsCard createdPrizePools={createdPrizePools} tokenBalances={tokenBalances} />
-      <GovernancePoolsCard createdPrizePools={createdPrizePools} tokenBalances={tokenBalances} />
+      {/* <UsersPoolsCard createdPrizePools={createdPrizePools} tokenBalances={tokenBalances} />
+      <GovernancePoolsCard createdPrizePools={createdPrizePools} tokenBalances={tokenBalances} /> */}
       <AllPoolsCard createdPrizePools={createdPrizePools} tokenBalances={tokenBalances} />
     </>
   )
@@ -258,9 +263,9 @@ const AllPoolsCard = (props) => {
 
   const { isWalletConnected } = useOnboard()
   const { chainId, view: networkView } = useNetwork()
+  console.log('chainID: ', chainId)
   const [hideNoDeposits, setHideNoDeposits] = useState(false)
   const [showFirstTen, setShowFirstTen] = useState(createdPrizePools.length > 10)
-
   const pools = useMemo(() => {
     if (!createdPrizePools || !tokenBalances) return []
 
@@ -273,14 +278,10 @@ const AllPoolsCard = (props) => {
       if (hideNoDeposits && Number(ticket.totalSupply) === 0) continue
 
       const row = (
-        <PoolRow key={prizePool.prizePool} prizePool={prizePool} token={token} ticket={ticket} />
+        <PoolRow key={prizePool.prizePool} prizePool={prizePool} token={prizePool.token} ticket={prizePool.ticket} />
       )
       pools.push(row)
     }
-
-    pools.sort(sortByTvl)
-
-    if (showFirstTen) return pools.slice(0, 10)
 
     return pools
   }, [createdPrizePools, tokenBalances, hideNoDeposits, showFirstTen, isWalletConnected])
@@ -367,7 +368,7 @@ const PoolRow = (props) => {
     <li className='flex flex-row mb-4 last:mb-0 w-full'>
       <PoolTitleCell {...props} />
       <TypeCell {...props} />
-      {isWalletConnected && <UsersBalanceCell {...props} />}
+      {/* {isWalletConnected && <UsersBalanceCell {...props} />} */}
       <TvlCell {...props} />
       <Actions {...props} />
     </li>
@@ -404,7 +405,24 @@ const TypeCell = (props) => {
 
 const TvlCell = (props) => {
   const { ticket, token } = props
-  const amount = ticket.totalSupply.toString()
+  console.log('ticket address:', props)
+  const [amount, setAmount] = useState("0")
+  useEffect(() => {
+    async function fetchTVL() {
+      try {
+        const web3 = new Web3(window.ethereum);
+        const ticketContract = new web3.eth.Contract(
+          BEP20ABI,
+          ticket
+        );
+        const result = await ticketContract.methods.totalSupply().call();
+        setAmount(result.toString())
+      } catch (error) {
+        console.log("web3 error: ", error)
+      }
+    }
+    fetchTVL()
+  }, [])
   return (
     <span className='w-1/6 hidden xs:block my-auto'>
       {numberWithCommas(amount, { precision: getPrecision(Number(amount)) })}
